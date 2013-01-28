@@ -11,16 +11,6 @@ var express = require('express')
   , mongoose = require('mongoose');
 
 var app = express();
-var userSchema = mongoose.Schema({
-    name: String,
-    age: String
-})
-var Cat = mongoose.model('Cat', userSchema);
-var tamy = new Cat({name: 'bob', age: '2'});
-tamy.save(function (err) {
-  if (err)
-    console.log("Problem saving bob", err);
-});
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -40,11 +30,10 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/users/new', user.new);
 
-app.get('/cats/new', function(reg, res) {
-    var bob = new User({name: 'cat 1', grade: 'A', class: '2013'});
-}
+// this should really be a post, but we'll cover that later
+// once we get to AJAX
+app.get('/users/new', user.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -7,11 +7,15 @@
   },
   "dependencies": {
     "express": "3.0.6",
+<<<<<<< HEAD
+    "jade": "*"
+=======
     "jade": "*",
     "mongoose": "3.x"
   },
   "engines": {
     "node": "0.8.14",
     "npm": "1.1.65"
+>>>>>>> 6caddd920a478eacc1f9598f2647f7fddc251ea7
   }
 }
