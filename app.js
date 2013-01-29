@@ -30,6 +30,9 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/users/:user', function (req, res) {
+  console.log(req.params.user); // this logs bob if we go to /users/bob 
+});
 
 // this should really be a post, but we'll cover that later
 // once we get to AJAX

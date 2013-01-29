@@ -5,7 +5,7 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
+  , cats = require('./routes/cats')
   , http = require('http')
   , path = require('path')
   , mongoose = require('mongoose');
@@ -29,11 +29,15 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/cats', cats.list); //some sorted list
+app.get('/cats/color/:color', function (req, res) {
+  console.log(req.params.color); // Show sorted list of cats specific color
+});
 
 // this should really be a post, but we'll cover that later
 // once we get to AJAX
-app.get('/users/new', user.create);
+app.get('/cats/new', cats.create); //I think supposed to create new cat
+app.get('/cats/delete/old', cats.delete) // Deletes oldest cat
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
